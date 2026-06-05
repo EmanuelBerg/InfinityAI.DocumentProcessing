@@ -67,12 +67,7 @@ jobs:
 
       - name: Add GitHub NuGet source
         run: |
-          dotnet nuget add source `
-            --username emanuelberg `
-            --password "${{ secrets.NUGET_APIKEY }}" `
-            --store-password-in-clear-text `
-            --name github `
-            "https://nuget.pkg.github.com/emanuelberg/index.json"
+          dotnet nuget add source --username emanuelberg --password "${{ secrets.NUGET_APIKEY }}" --store-password-in-clear-text --name github "https://nuget.pkg.github.com/emanuelberg/index.json"
 
       - name: Publish NuGet package
         run: dotnet nuget push "${{ env.NuGetDirectory }}/*.nupkg" --api-key "${{ secrets.NUGET_APIKEY }}" --source "github" --skip-duplicate
